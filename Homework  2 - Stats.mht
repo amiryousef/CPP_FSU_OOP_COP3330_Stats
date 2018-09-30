@@ -1,0 +1,314 @@
+From: "Saved by Windows Internet Explorer 8"
+Subject: Homework 2: Stats
+Date: Sun, 2 Oct 2011 21:25:13 -0400
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_000A_01CC8149.C5E337E0"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.0.6002.18463
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_000A_01CC8149.C5E337E0
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.cs.fsu.edu/~lacher/courses/COP3330/assigns/hw2.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Homework 2: Stats</TITLE>
+<META content=3D"text/html; charset=3Dwindows-1252" =
+http-equiv=3DContent-Type>
+<META name=3DGENERATOR content=3D"MSHTML 8.00.6001.19120">
+<STYLE type=3Dtext/css>@import url( =
+http://www.cs.fsu.edu/~lacher/styles/RCLstyle1.css );
+</STYLE>
+</HEAD>
+<BODY aLink=3D#808080 link=3Dblack vLink=3Dblack><!--=0A=
+<center>=0A=
+<h1><font color=3D#990000>DRAFT: Open for comment in the discussion =
+forum.</font></h1>=0A=
+</center>=0A=
+-->
+<CENTER>
+<H1>Homework 2: Stats</H1></CENTER>
+<P><B>Educational Objectives:</B> After successfully completing this =
+assignment,=20
+the student should be able to accomplish the following: </P>
+<UL>
+  <LI>Use a loop structure to read user input of unknown size through=20
+  <TT>std::cin</TT> and store it in an array.=20
+  <LI>Use conditional branching to selectively perform computational =
+tasks.=20
+  <LI>Declare (prototype) and define (implement) functions.=20
+  <LI>Declare and define functions with arguments of various types, =
+including=20
+  pointers, references, const pointers, and const references.=20
+  <LI>Call functions, making appropriate use of the function arguments =
+and their=20
+  types.=20
+  <LI>Make decisions as to appropriate function call parameter type, =
+from among:=20
+  value, reference, const reference, pointer, and const pointer.=20
+  <LI>Compile and run a C++ program in the Unix/Linux environment using=20
+  <TT>g++</TT>. </LI></UL>
+<P><STRONG>Operational Objectives:</STRONG> Create a single file named=20
+<TT>stats.cpp</TT> that computes the mean and median of a sequence of =
+integers=20
+received via standard input. </P>
+<P><STRONG>Deliverables:</STRONG> One file <TT>stats.cpp</TT>. </P>
+<H2>Background</H2>
+<P>Given a finite collection of <I>n</I> numbers: </P>
+<OL type=3Da>
+  <LI>The <EM>mean</EM> is the sum of the numbers divided by <I>n</I>, =
+and=20
+  <LI>The <EM>median</EM> is the middle value (in case <I>n</I> is odd) =
+or the=20
+  average of the two middle values (in case <I>n</I> is even). =
+</LI></OL>
+<P>Note that to find the median of a collection of data, it is =
+convenient to=20
+first <EM>sort</EM> the data, that is, put the data in increasing (or=20
+non-decreasing) order. Then the median is just the middle datum in the =
+sorted=20
+sequence (or the average of the two middle data, if there are an even =
+number).=20
+</P>
+<P>One of the simplest sort algorithms is called <EM>Selection =
+Sort</EM>, which=20
+operates on an array of elements and has a computation which can be =
+described in=20
+one sentence: <I>For each element of the array, find the smallest =
+element with=20
+equal or higher index in the array and swap these two elements.</I> Here =
+is a=20
+"pseudocode" description of the algorithm: </P>
+<BLOCKQUOTE><PRE>for i in [0...n)       // for each element of array A
+  k =3D i                // find the smallest element following it
+  for j in [i+1...n)
+    if A[j] &lt; A[k]
+      k =3D j
+    endif
+  endfor               // now A[k] is the smallest element following =
+A[i]
+  swap the values in A[i] and A[k]
+endfor
+</PRE></BLOCKQUOTE>
+<P>(You could test whether <TT>A[k] &lt; A[i]</TT> before the swap, but =
+it is=20
+not clear this would speed up the process - swapping may be faster than=20
+testing.) </P>
+<H2>Procedural Requirements:</H2>
+<OL type=3D1>
+  <LI>
+  <P>Create and work within a separate subdirectory =
+<TT>cop3330/hw2</TT>. Review=20
+  the COP 3330 rules found in Introduction/Work Rules. </P>
+  <LI>
+  <P>Turn in one file <TT>stats.cpp</TT> using the <TT>hw2submit.sh</TT> =
+submit=20
+  script. </P>
+  <P><EM><B>Warning:</B> Submit scripts do not work on the =
+<TT>program</TT> and=20
+  <TT>linprog</TT> servers. Use <TT>shell.cs.fsu.edu</TT> to submit =
+projects. If=20
+  you do not receive the second confirmation with the contents of your =
+project,=20
+  there has been a malfunction.</EM> </P></LI></OL>
+<H2>Technical Requirements and Specifications</H2>
+<OL>
+  <LI>
+  <P>The project should compile error- and warning-free on =
+<TT>linprog</TT> with=20
+  the command <TT>g++ -ostats.x -Wall -Wextra stats.cpp</TT>. </P>
+  <LI>
+  <P>The number of integers input by the user is not known in advance, =
+except=20
+  that it will not exceed 100. Numbers are input through standard input, =
+either=20
+  from keyboard or file re-direct. The program should read numbers until =
+a=20
+  non-digit or end-of-file is encountered or 100 numbers have been read. =
+</P>
+  <LI>
+  <P>Once the input numbers have been read, the program should calculate =
+the=20
+  mean and median and then report these values to standard output. </P>
+  <LI>
+  <P>The source code should be structured and organized as follows:=20
+  <OL type=3Da>
+    <LI>Implement separate functions with the following prototypes: =
+<PRE>float Mean   (const int* a, size_t size); // calculates mean of =
+data in a
+float Median (int* a, size_t size);       // calculates median of data =
+in a
+void  Swap   (int&amp; x, int&amp; y);            // interchanges values =
+of x and y
+void  Sort   (int* a, size_t size);       // sorts the data in a
+</PRE>
+    <LI>I/O is handled by function <TT>main()</TT>; no other functions =
+should do=20
+    any I/O=20
+    <LI>Function <TT>main()</TT> calls <TT>Mean()</TT> and =
+<TT>Median()</TT>=20
+    <LI>Function <TT>Median()</TT> calls <TT>Sort()</TT>=20
+    <LI>Function <TT>Sort()</TT> calls <TT>Swap()</TT> </LI></OL>
+  <P></P>
+  <LI>
+  <P>The <TT>Sort()</TT> function should implement the Selection Sort =
+algorithm.=20
+  </P>
+  <LI>
+  <P>When in doubt, your program should behave like the distributed =
+executable=20
+  examples in <TT>stats_i.x</TT> and <TT>stats_s.x</TT> in =
+<TT>area51</TT>.=20
+  Identical behavior is not required, but the general I/O behavior =
+should be the=20
+  same. In particular, the data input loop should not be interupted by =
+prompts=20
+  for a next datum - this will make file redirect cumbersome. Just ask =
+for the=20
+  data one time, then read until a non-digit or end of file is =
+encountered.=20
+  </P></LI></OL>
+<H2>Hints</H2>
+<UL>
+  <LI>Sample executables are distributed in <TT>[LIB]/area51</TT>. These =
+are=20
+  named <TT>stats_i.x</TT> and <TT>stats_s.x</TT>. The suffixes indicate =
+which=20
+  of the two architectures the executable is compiled on: <TT>*_i.x</TT> =
+runs on=20
+  Intel/Linux and <TT>*_s.x</TT> runs on Sun/Unix.=20
+  <LI>To run a sample executable, follow these steps: (1) Decide which=20
+  architecture you want to use. The <TT>program</TT> machines are 32-bit =
+Sun=20
+  architecture running Sun's version of Unix, and the <TT>linprog</TT> =
+machines=20
+  are Intel 64-bit architecture running Linux. (2) Copy the appropriate=20
+  executable into your space where you want to run it. For example, if =
+you are=20
+  logged in to <TT>program</TT> enter the command "<TT>cp =
+[LIB]/area51/stats_s.x=20
+  .</TT>". (3) Change permissions to executable: "<TT>chmod 700 =
+stats_s.x</TT>".=20
+  (4) Execute by entering the name of the executable. If you want to run =
+it on a=20
+  data file "<TT>data1</TT>", use input redirect as in: "<TT>stats_s.x =
+&lt;=20
+  data1</TT>". If you want the output to go to another file, use output=20
+  redirect: "<TT>stats_s.x &lt; data1 &gt; data1.out</TT>".=20
+  <LI>Two test files are distributed in <TT>[LIB]/hw2</TT>. To run the =
+sample=20
+  executable on a file, say <TT>data1</TT>, first make sure you have an=20
+  executable copy of the program and the data file, then enter the=20
+  command:<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stats.x &lt; =
+data1</TT><BR>This=20
+  is a Unix/Linux operation that redirects the contents of =
+<TT>data1</TT> into=20
+  standard input for <TT>stats.x</TT>. Using &gt; redirects program =
+output. For=20
+  example, the command:<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stats.x =
+&lt; data1=20
+  &gt; data1.out</TT><BR>sends the contents of <TT>data1</TT> to =
+standard input=20
+  and then sends the program output into the file <TT>data1.out</TT>. =
+These are=20
+  very handy operations for testing programs.=20
+  <LI>Note that the array in which input is stored is passed to the =
+functions as=20
+  a pointer. In the case of <TT>Mean()</TT>, this pointer is =
+<TT>const</TT>,=20
+  indicating that the elements of the array may not be changed by the =
+call.=20
+  However in the case of <TT>Median()</TT>, the array element values are =
+allowed=20
+  to change. These values are in fact changed by the call to =
+<TT>Sort()</TT>.=20
+  <LI>The function <TT>Sort()</TT> operates on the array input as a =
+pointer.=20
+  When the function returns, the values of the array should be in =
+increasing=20
+  order.=20
+  <LI>The selection sort algorithm requires a nested pair of =
+<TT>for</TT> loops=20
+  (one inside the other).=20
+  <LI>The function <TT>Swap()</TT> encapsulates the chore of swapping =
+two=20
+  values. Your sort implementation should call <TT>Swap</TT> whever two =
+values=20
+  need to be swapped. Note that the two parameters for <TT>Swap</TT> are =
+passed=20
+  by reference, so that the function acts on the values in the =
+<I>calling</I>=20
+  routine.=20
+  <LI>Sorting the data is essential to calculate the median: when in an =
+array=20
+  that is sorted, the middle (two) values are those contained in the =
+middle=20
+  (two) indices of the array.=20
+  <LI>The middle index of an array of <TT>n</TT> elements, when =
+<TT>n</TT> is=20
+  odd, is [(<TT>n-1)/2]</TT>. The middle two indices, when <TT>n</TT> is =
+even,=20
+  are <TT>[n/2 - 1]</TT> and <TT>[n/2]</TT>.=20
+  <LI>Be careful when subtracting 1 from an unsigned integer type such =
+as=20
+  <TT>size_t</TT>.=20
+  <LI>Look at the code examples in <A=20
+  =
+href=3D"http://www.cs.fsu.edu/~lacher/courses/COP3330/lectures/control/to=
+c.html"=20
+  target=3D_blank>Chapter 3</A> of the lecture notes to find simple ways =
+to=20
+  structure your main I/O loop. </LI></UL></BODY></HTML>
+
+------=_NextPart_000_000A_01CC8149.C5E337E0
+Content-Type: text/css;
+	charset="windows-1256"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.cs.fsu.edu/~lacher/styles/RCLstyle1.css
+
+PRE {
+	FONT-FAMILY: Courier New, Fixedsys; FONT-SIZE: 10pt
+}
+TT {
+	FONT-FAMILY: Courier New, Fixedsys; FONT-SIZE: 10pt
+}
+P {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt
+}
+H1 {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 12pt; FONT-WEIGHT: bold
+}
+H2 {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt; FONT-WEIGHT: bold
+}
+H3 {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt; FONT-WEIGHT: bold
+}
+UL {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt
+}
+LI {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt
+}
+DL {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt
+}
+DT {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt
+}
+DD {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt
+}
+EM {
+	FONT-STYLE: italic; FONT-FAMILY: Verdana, sans-serif; COLOR: #990000; =
+FONT-SIZE: 10pt
+}
+TD {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt
+}
+
+------=_NextPart_000_000A_01CC8149.C5E337E0--
